@@ -1,0 +1,23 @@
+ Lab Practical 8
+Problem Statement:
+Write a program that asks the user for a number and outputs the number 
+squared that is entered.
+int num;
+int sq;
+void setup() {
+ Serial.begin(9600);
+ while (!Serial) {
+ ; // Wait for serial port to connect
+ }
+}
+void loop() {
+ while (Serial.available() <= 0) {
+ delay(100); // Wait for input
+ }
+ num = Serial.parseInt();
+ sq = num * num;
+ Serial.print("The square of ");
+ Serial.print(num);
+ Serial.print(" is: ");
+ Serial.println(sq);
+}

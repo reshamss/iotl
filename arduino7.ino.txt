@@ -1,0 +1,50 @@
+Lab Practical 7
+Problem Statement:
+Create a program so that when the user enters ‘b’ the green light blinks, ‘g’ the 
+green light is illuminated ‘y’ the yellow light is illuminated and ‘r’ the red light is 
+illuminated
+const int led1Pin = 7;
+const int led2Pin = 8;
+const int led3Pin = 9;
+const int led4Pin = 10;
+void setup() {
+ pinMode(led1Pin, OUTPUT);
+ pinMode(led2Pin, OUTPUT);
+ pinMode(led3Pin, OUTPUT);
+ pinMode(led4Pin, OUTPUT);
+ digitalWrite(led1Pin, HIGH);
+ digitalWrite(led2Pin, HIGH);
+ digitalWrite(led3Pin, HIGH);
+ digitalWrite(led4Pin, HIGH);
+ Serial.begin(9600);
+}
+void loop() {
+ char key;
+ while (Serial.available() <= 0) {
+ delay(100); // Wait for input
+ }
+ key = Serial.read();
+ Serial.println(key);
+ if (key == 'g' || key == 'G') {
+ digitalWrite(led1Pin, LOW);
+ digitalWrite(led2Pin, HIGH);
+ digitalWrite(led3Pin, HIGH);
+ digitalWrite(led4Pin, HIGH);
+ } else if (key == 'r' || key == 'R') {
+ digitalWrite(led1Pin, HIGH);
+ digitalWrite(led2Pin, LOW);
+ digitalWrite(led3Pin, HIGH);
+ digitalWrite(led4Pin, HIGH);
+ } else if (key == 'y' || key == 'Y') {
+ digitalWrite(led1Pin, HIGH);
+ digitalWrite(led2Pin, HIGH);
+ digitalWrite(led3Pin, LOW);
+ digitalWrite(led4Pin, HIGH);
+ } else {
+ digitalWrite(led1Pin, HIGH);
+ digitalWrite(led2Pin, HIGH);
+ digitalWrite(led3Pin, HIGH);
+ digitalWrite(led4Pin, HIGH);
+ }
+ delay(200); // Delay to stabilize LED changes
+}

@@ -1,0 +1,33 @@
+Lab Practical 6
+Problem Statement:
+Create a program that illuminates the green LED if the counter is less than 100, illuminate the 
+yellow LED if the counter is between 101 and 200 and illuminates the red LED if the counter is 
+greater than 200.
+const int led1Pin = 7;
+const int led2Pin = 8;
+const int led3Pin = 9;
+int number = 0;
+void setup() {
+ pinMode(led1Pin, OUTPUT);
+ pinMode(led2Pin, OUTPUT);
+ pinMode(led3Pin, OUTPUT);
+}
+void loop() {
+ delay(200); // Wait for 200 milliseconds
+ 
+ if (number <= 100) {
+ digitalWrite(led1Pin, LOW);
+ digitalWrite(led2Pin, HIGH);
+ digitalWrite(led3Pin, HIGH);
+ } else if (number > 201 && number <= 300) {
+ digitalWrite(led1Pin, HIGH);
+ digitalWrite(led2Pin, LOW);
+ digitalWrite(led3Pin, HIGH);
+ } else if (number > 101 && number <= 200) {
+ digitalWrite(led1Pin, HIGH);
+ digitalWrite(led2Pin, HIGH);
+ digitalWrite(led3Pin, LOW);
+ }
+ 
+ number = (number + 1) % 301; // Reset number after 300 iterations
+}
