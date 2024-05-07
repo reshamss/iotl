@@ -1,0 +1,36 @@
+const int led1Pin = 7;
+const int led2Pin = 8;
+const int led3Pin = 9;
+
+void setup() {
+  pinMode(led1Pin, OUTPUT);
+  pinMode(led2Pin, OUTPUT);
+  pinMode(led3Pin, OUTPUT);
+
+  Serial.begin(9600); // Initialize Serial communication
+}
+
+void loop() {
+  while (!Serial.available()); // Wait until data is available
+
+  int userInput = Serial.parseInt(); // Read user input as an integer
+  
+  if (userInput <= 100) {
+    digitalWrite(led1Pin, LOW);
+    digitalWrite(led2Pin, HIGH);
+    digitalWrite(led3Pin, HIGH);
+  } else if (userInput > 201 && userInput <= 300) {
+    digitalWrite(led1Pin, HIGH);
+    digitalWrite(led2Pin, LOW);
+    digitalWrite(led3Pin, HIGH);
+  } else if (userInput > 101 && userInput <= 200) {
+    digitalWrite(led1Pin, HIGH);
+    digitalWrite(led2Pin, HIGH);
+    digitalWrite(led3Pin, LOW);
+  }
+
+  // Clear the serial input buffer
+  while (Serial.available() > 0) {
+    char dummy = Serial.read();
+  }
+}
