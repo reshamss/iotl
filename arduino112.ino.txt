@@ -1,0 +1,31 @@
+const int buzzer = A1;
+const int knockSensor = A0;  // Corrected the knock sensor pin to A0
+const int threshold = 400;
+
+int sensorReading = 0;
+
+void setup() {
+  pinMode(buzzer, OUTPUT);  // Corrected the pinMode to OUTPUT for the buzzer
+}
+
+void loop() {
+  sensorReading = analogRead(knockSensor);
+
+  if (sensorReading >= threshold) {
+    playTune();  // Call the function to play the tune
+  }
+
+  delay(100);  // Delay between sensor readings
+}
+
+void playTune() {
+  int notes[] = {261, 293, 329, 349, 392};  // C, D, E, F, G frequencies
+  int duration = 200;
+
+  for (int i = 0; i < 5; i++) {
+    tone(buzzer, notes[i]);
+    delay(duration);
+    noTone(buzzer);
+    delay(50);  // Short pause between notes
+  }
+}
